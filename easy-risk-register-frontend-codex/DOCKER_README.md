@@ -22,11 +22,11 @@ The Easy Risk Register frontend is a React application built with Vite and TypeS
 ### Using Docker Compose (Recommended)
 
 1. Navigate to the project root directory
-2. Build and start the development environment for the qwen frontend:
+2. Build and start the development environment for the codex frontend:
    ```bash
-   docker-compose up --build frontend-qwen
+   docker-compose up --build frontend-codex
    ```
-3. Access the application at `http://localhost:5174` (mapped to container port 5173)
+3. Access the application at `http://localhost:5173`
 4. The application will automatically reload when you make code changes
 
 Alternatively, you can run both frontends simultaneously:
@@ -40,15 +40,15 @@ Alternatively, you can run both frontends simultaneously:
 
 1. Navigate to the frontend directory:
    ```bash
-   cd easy-risk-register-frontend
+   cd easy-risk-register-frontend-codex
    ```
 2. Build the development image:
    ```bash
-   docker build -f Dockerfile.dev -t easy-risk-register-frontend-dev .
+   docker build -f Dockerfile.dev -t easy-risk-register-frontend-codex-dev .
    ```
 3. Run the development container:
    ```bash
-   docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules easy-risk-register-frontend-dev
+   docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules easy-risk-register-frontend-codex-dev
    ```
 
 ## Production Build with Docker
@@ -57,15 +57,15 @@ Alternatively, you can run both frontends simultaneously:
 
 1. Navigate to the frontend directory:
    ```bash
-   cd easy-risk-register-frontend
+   cd easy-risk-register-frontend-codex
    ```
 2. Build the production image:
    ```bash
-   docker build -t easy-risk-register-frontend .
+   docker build -t easy-risk-register-frontend-codex .
    ```
 3. Run the production container:
    ```bash
-   docker run -p 8080:8080 easy-risk-register-frontend
+   docker run -p 8080:8080 easy-risk-register-frontend-codex
    ```
 4. Access the application at `http://localhost:8080`
 
@@ -83,7 +83,7 @@ Based on the system architecture:
 - Vite 7.1.7 as the build tool
 - Zustand for state management
 - Tailwind CSS for styling
-- React Router for navigation
+- React Hook Form for forms
 - Framer Motion for animations
 
 ## Vite Configuration

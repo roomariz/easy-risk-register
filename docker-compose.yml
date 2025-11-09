@@ -1,14 +1,26 @@
-version: '3.8'
-
 services:
-  frontend:
+  frontend-codex:
     build:
-      context: ./easy-risk-register-frontend
+      context: ./easy-risk-register-frontend-codex
       dockerfile: Dockerfile.dev
     ports:
       - "5173:5173"
     volumes:
-      - ./easy-risk-register-frontend:/app
+      - ./easy-risk-register-frontend-codex:/app
+      - /app/node_modules  # Prevents overwriting node_modules from the container
+    environment:
+      - NODE_ENV=development
+    working_dir: /app
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+  frontend-qwen:
+    build:
+      context: ./easy-risk-register-frontend-qwen
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5174:5173"
+    volumes:
+      - ./easy-risk-register-frontend-qwen:/app
       - /app/node_modules  # Prevents overwriting node_modules from the container
     environment:
       - NODE_ENV=development

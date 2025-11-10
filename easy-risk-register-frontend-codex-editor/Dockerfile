@@ -1,5 +1,6 @@
 # Use Node.js 20 LTS as base image for optimal compatibility with React + TypeScript
-FROM node:20-alpine
+# Multi-stage build: build stage
+FROM node:20 as builder
 
 # Set working directory for the frontend application
 WORKDIR /app
@@ -7,14 +8,29 @@ WORKDIR /app
 # Copy package files first to leverage Docker cache
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install all dependencies (including devDependencies for build)
+RUN npm ci && npm cache clean --force
 
 # Copy the rest of the application code
 COPY . .
 
 # Build the application for production
 RUN npm run build
+
+# Production stage: create a lean production image
+FROM node:20-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy the built application from the builder stage
+COPY --from=builder /app/dist ./dist
 
 # Install serve to serve the static build files
 RUN npm install -g serve

@@ -7,10 +7,10 @@ if [ "$1" = "dev" ]; then
     docker-compose up --build
 elif [ "$1" = "prod" ]; then
     echo "Building production image..."
-    cd easy-risk-register-frontend
-    docker build -t easy-risk-register-frontend .
+    cd easy-risk-register-frontend-codex-editor
+    docker build -t easy-risk-register-frontend-codex-editor -f Dockerfile .
     echo "Starting production container..."
-    docker run -p 8080:8080 easy-risk-register-frontend
+    docker run -d --name easy-risk-register-frontend-codex-editor-prod -p 8080:8080 easy-risk-register-frontend-codex-editor
 else
     echo "Usage:"
     echo "  ./build-docker.sh dev   - Build and run development environment"

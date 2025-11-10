@@ -1,14 +1,15 @@
 version: '3.8'
 
 services:
-  frontend:
+  frontend-codex:
+    container_name: easy-risk-register-frontend-codex-editor
     build:
-      context: ./frontend-codex-editor
+      context: ./easy-risk-register-frontend-codex-editor
       dockerfile: Dockerfile.dev
     ports:
       - "5173:5173"
     volumes:
-      - ./frontend-codex-editor:/app
+      - ./easy-risk-register-frontend-codex-editor:/app
       - /app/node_modules
     environment:
       - NODE_ENV=development
@@ -16,6 +17,7 @@ services:
 
   # Optional: If you decide to add backend services in the future
   # backend:
+  #   container_name: easy-risk-register-backend
   #   build:
   #     context: ./backend
   #     dockerfile: Dockerfile

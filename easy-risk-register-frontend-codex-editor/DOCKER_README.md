@@ -40,15 +40,15 @@ Alternatively, you can run both frontends simultaneously:
 
 1. Navigate to the frontend directory:
    ```bash
-   cd easy-risk-register-frontend-codex
+   cd easy-risk-register-frontend-codex-editor
    ```
 2. Build the development image:
    ```bash
-   docker build -f Dockerfile.dev -t easy-risk-register-frontend-codex-dev .
+   docker build -f Dockerfile.dev -t easy-risk-register-frontend-codex-editor-dev .
    ```
 3. Run the development container:
    ```bash
-   docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules easy-risk-register-frontend-codex-dev
+   docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules easy-risk-register-frontend-codex-editor-dev
    ```
 
 ## Production Build with Docker
@@ -57,15 +57,15 @@ Alternatively, you can run both frontends simultaneously:
 
 1. Navigate to the frontend directory:
    ```bash
-   cd easy-risk-register-frontend-codex
+   cd easy-risk-register-frontend-codex-editor
    ```
 2. Build the production image:
    ```bash
-   docker build -t easy-risk-register-frontend-codex .
+   docker build -t easy-risk-register-frontend-codex-editor .
    ```
 3. Run the production container:
    ```bash
-   docker run -p 8080:8080 easy-risk-register-frontend-codex
+   docker run -p 8080:8080 easy-risk-register-frontend-codex-editor
    ```
 4. Access the application at `http://localhost:8080`
 

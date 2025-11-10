@@ -13,19 +13,7 @@ services:
     working_dir: /app
     command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
 
-  frontend-qwen:
-    build:
-      context: ./easy-risk-register-frontend-qwen
-      dockerfile: Dockerfile.dev
-    ports:
-      - "5174:5173"
-    volumes:
-      - ./easy-risk-register-frontend-qwen:/app
-      - /app/node_modules  # Prevents overwriting node_modules from the container
-    environment:
-      - NODE_ENV=development
-    working_dir: /app
-    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
 
   # Optional: If you decide to add backend services in the future
   # backend:

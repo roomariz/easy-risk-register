@@ -1,12 +1,25 @@
-services:
+version: '3.8'
 
+services:
+  frontend:
+    build:
+      context: ./frontend-codex-editor
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend-codex-editor:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev -- --host 0.0.0.0
 
   # Optional: If you decide to add backend services in the future
   # backend:
   #   build:
-  #     context: ./easy-risk-register-backend
+  #     context: ./backend
   #     dockerfile: Dockerfile
   #   ports:
-  #     - "3000:3000"
+  #     - "8000:8000"
   #   environment:
   #     - NODE_ENV=development

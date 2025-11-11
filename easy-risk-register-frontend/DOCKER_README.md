@@ -22,33 +22,26 @@ The Easy Risk Register frontend is a React application built with Vite and TypeS
 ### Using Docker Compose (Recommended)
 
 1. Navigate to the project root directory
-2. Build and start the development environment for the codex frontend:
-   ```bash
-   docker-compose up --build frontend-codex
-   ```
-3. Access the application at `http://localhost:5173`
-4. The application will automatically reload when you make code changes
-
-Alternatively, you can run both frontends simultaneously:
+2. Build and start the development environment:
    ```bash
    docker-compose up --build
    ```
-   - codex frontend will be available at `http://localhost:5173`
-   - qwen frontend will be available at `http://localhost:5174`
+3. Access the application at `http://localhost:5173`
+4. The application will automatically reload when you make code changes
 
 ### Using Docker directly
 
 1. Navigate to the frontend directory:
    ```bash
-   cd easy-risk-register-frontend-codex-editor
+   cd easy-risk-register-frontend
    ```
 2. Build the development image:
    ```bash
-   docker build -f Dockerfile.dev -t easy-risk-register-frontend-codex-editor-dev .
+   docker build -f Dockerfile.dev -t easy-risk-register-frontend-dev .
    ```
 3. Run the development container:
    ```bash
-   docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules easy-risk-register-frontend-codex-editor-dev
+   docker run -p 5173:5173 -v $(pwd):/app -v /app/node_modules easy-risk-register-frontend-dev
    ```
 
 ## Production Build with Docker
@@ -57,15 +50,15 @@ Alternatively, you can run both frontends simultaneously:
 
 1. Navigate to the frontend directory:
    ```bash
-   cd easy-risk-register-frontend-codex-editor
+   cd easy-risk-register-frontend
    ```
 2. Build the production image:
    ```bash
-   docker build -t easy-risk-register-frontend-codex-editor .
+   docker build -t easy-risk-register-frontend .
    ```
 3. Run the production container:
    ```bash
-   docker run -p 8080:8080 easy-risk-register-frontend-codex-editor
+   docker run -p 8080:8080 easy-risk-register-frontend
    ```
 4. Access the application at `http://localhost:8080`
 

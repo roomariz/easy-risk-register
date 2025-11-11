@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
 
-  frontend-codex:
+  frontend:
     build:
-      context: ./easy-risk-register-frontend-codex-editor
+      context: ./easy-risk-register-frontend
       dockerfile: Dockerfile
     ports:
       - "3001:8080"

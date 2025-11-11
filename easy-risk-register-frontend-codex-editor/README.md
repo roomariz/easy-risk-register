@@ -1,73 +1,40 @@
-# React + TypeScript + Vite
+# Easy Risk Register
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A privacy-focused, client-side risk management application for small and medium-sized businesses. Easy Risk Register operates entirely in the browser with no server dependencies, storing all data in local storage for maximum privacy and security.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Risk creation, editing, and deletion
+- Automatic risk scoring (probability × impact)
+- Interactive risk visualization matrix
+- CSV export functionality
+- Responsive design for all device sizes
+- Local storage for data persistence
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (via Vite)
+- TypeScript
+- Zustand for state management
+- Tailwind CSS for styling
+- Framer Motion for animations
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Install dependencies: `npm install`
+2. Start the development server: `npm run dev`
+3. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Architecture
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+This application follows a client-side-only architecture with no server dependencies. All data is stored in browser local storage, ensuring complete privacy and data security. The application implements the design system and feature specifications outlined in the project documentation.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Components Structure
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The codebase follows a modular structure:
+- `src/components/` - Reusable UI components organized by category
+- `src/pages/` - Page-level components
+- `src/stores/` - Zustand stores for state management
+- `src/types/` - TypeScript type definitions
+- `src/utils/` - Utility functions
+- `src/services/` - Business logic and service layer

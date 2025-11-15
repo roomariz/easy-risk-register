@@ -1,0 +1,13 @@
+{
+  "name": "easy-risk-register-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "cd easy-risk-register-frontend && npm run dev",
+    "dev:docker": "docker-compose --profile development up --build frontend-dev",
+    "prod:docker": "docker-compose up --build",
+    "install": "cd easy-risk-register-frontend && npm install",
+    "build": "cd easy-risk-register-frontend && npm run build",
+    "setup": "npm run install && echo 'Setup complete! Run \"npm run dev\" to start the development server.'"
+  }
+}

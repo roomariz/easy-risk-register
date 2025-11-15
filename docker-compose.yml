@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   frontend:
     build:
       context: ./easy-risk-register-frontend
@@ -18,3 +17,21 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  frontend-dev:
+    build:
+      context: ./easy-risk-register-frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mount the source code for hot reloading
+      - ./easy-risk-register-frontend:/app
+      # Avoid conflicts with local node_modules
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    profiles:
+      - development

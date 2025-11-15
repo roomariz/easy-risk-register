@@ -7,10 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest --run",
+    "test:run": "vitest --run",
+    "test:a11y": "echo 'Accessibility tests run in development mode via the AccessibilityTester component'"
   },
   "dependencies": {
+    "dompurify": "^3.3.0",
     "framer-motion": "^12.23.24",
+    "isomorphic-dompurify": "^2.30.0",
     "nanoid": "^5.1.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -18,20 +23,26 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
-    "@types/node": "^24.6.0",
-    "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@axe-core/react": "^4.11.0",
+    "@eslint/js": "^9.39.1",
+    "@types/axe-core": "^2.0.2",
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.21",
+    "axe-core": "^4.11.0",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
-    "globals": "^16.4.0",
+    "globals": "^16.5.0",
+    "jsdom": "^27.2.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.14",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.45.0",
-    "vite": "^5.4.10"
+    "typescript-eslint": "^8.46.4",
+    "vite": "^5.4.21",
+    "vitest": "^4.0.9"
   }
 }

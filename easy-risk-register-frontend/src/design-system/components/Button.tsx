@@ -34,13 +34,27 @@ const sizeStyles: Record<ButtonSize, string> = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', fullWidth = false, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(baseStyles, variantStyles[variant], sizeStyles[size], fullWidth && 'w-full', className)}
-      {...props}
-    />
-  ),
+  ({ className, variant = 'primary', size = 'md', fullWidth = false, children, ...props }, ref) => {
+    // Add appropriate ARIA attributes based on context
+    const computedProps = {
+      ...props,
+      className: cn(baseStyles, variantStyles[variant], sizeStyles[size], fullWidth && 'w-full', className),
+    }
+
+    // Ensure loading state accessibility
+    if (props['aria-busy']) {
+      computedProps['aria-disabled'] = true
+    }
+
+    return (
+      <button
+        ref={ref}
+        {...computedProps}
+      >
+        {children}
+      </button>
+    )
+  },
 )
 
 Button.displayName = 'Button'

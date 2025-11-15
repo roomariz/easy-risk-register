@@ -51,10 +51,10 @@ export const RiskMatrix = ({ risks, onSelect }: RiskMatrixProps) => {
   }
 
   return (
-    <div className="rr-panel space-y-4 p-5">
+    <div className="rr-panel space-y-4 p-5" role="region" aria-labelledby="risk-matrix-title">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="text-lg font-semibold text-text-high">Risk matrix</h3>
+          <h3 id="risk-matrix-title" className="text-lg font-semibold text-text-high">Risk matrix</h3>
           <p className="text-xs text-text-low">Interactive visualization of risks by probability and impact</p>
         </div>
         <div className="flex items-center gap-2 text-xs text-text-low">
@@ -64,17 +64,30 @@ export const RiskMatrix = ({ risks, onSelect }: RiskMatrixProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-[auto_repeat(5,minmax(0,1fr))] gap-2">
-        <div />
+      <div
+        className="grid grid-cols-[auto_repeat(5,minmax(0,1fr))] gap-2"
+        role="grid"
+        aria-label="Risk matrix grid showing risk distribution by probability and impact"
+      >
+        <div role="gridcell" />
         {impactScale.map((impact) => (
-          <div key={`impact-${impact}`} className="text-center text-xs text-text-low font-semibold">
+          <div
+            key={`impact-${impact}`}
+            className="text-center text-xs text-text-low font-semibold"
+            role="columnheader"
+            aria-label={`Impact level ${impact}`}
+          >
             Impact {impact}
           </div>
         ))}
 
         {cells.map((row, rowIndex) => (
           <Fragment key={`prob-row-${probabilityScale[rowIndex]}`}>
-            <div className="flex items-center justify-center text-xs text-text-low font-semibold">
+            <div
+              className="flex items-center justify-center text-xs text-text-low font-semibold"
+              role="rowheader"
+              aria-label={`Probability level ${probabilityScale[rowIndex]}`}
+            >
               Prob {probabilityScale[rowIndex]}
             </div>
             {row.map((cell) => (
@@ -83,6 +96,10 @@ export const RiskMatrix = ({ risks, onSelect }: RiskMatrixProps) => {
                 type="button"
                 onClick={() => cell.risks.length && onSelect?.(cell.risks.map((risk) => risk.id))}
                 className={`min-h-[72px] rounded-xl border p-2 text-center text-text-high transition-all hover:scale-105 hover:shadow-md focus-visible:outline focus-visible:outline-brand-primary/30 ${getCellColor(cell.severity)}`}
+                role="gridcell"
+                aria-label={`Risk cell: Probability ${cell.probability}, Impact ${cell.impact}, ${cell.risks.length} risk(s), ${cell.severity ? cell.severity : 'no'} severity`}
+                aria-describedby="risk-matrix-instructions"
+                disabled={!cell.risks.length}
               >
                 <div className="text-xl font-bold">
                   {cell.risks.length ? cell.risks.length : '-'}
@@ -96,7 +113,7 @@ export const RiskMatrix = ({ risks, onSelect }: RiskMatrixProps) => {
         ))}
       </div>
 
-      <div className="text-xs text-text-low text-center pt-2">
+      <div id="risk-matrix-instructions" className="text-xs text-text-low text-center pt-2">
         Click on any cell to filter risks by probability and impact level
       </div>
     </div>

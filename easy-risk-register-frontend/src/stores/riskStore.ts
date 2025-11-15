@@ -10,23 +10,27 @@ import {
   computeRiskStats,
   filterRisks,
 } from '../utils/riskCalculations'
+import { sanitizeRiskInput, sanitizeTextInput } from '../utils/sanitization'
 
 const clampScore = (value: number) => Math.min(Math.max(Math.round(value), 1), 5)
 
 const normalizeText = (value: string) => value.trim()
 
 const buildRisk = (input: RiskInput): Risk => {
+  // Sanitize the input before processing
+  const sanitizedInput = sanitizeRiskInput(input) as RiskInput
+
   const now = new Date().toISOString()
   return {
     id: nanoid(12),
-    title: normalizeText(input.title),
-    description: normalizeText(input.description),
-    probability: clampScore(input.probability),
-    impact: clampScore(input.impact),
-    riskScore: calculateRiskScore(input.probability, input.impact),
-    category: normalizeText(input.category) || DEFAULT_CATEGORIES[0],
-    status: input.status ?? 'open',
-    mitigationPlan: normalizeText(input.mitigationPlan ?? ''),
+    title: normalizeText(sanitizedInput.title),
+    description: normalizeText(sanitizedInput.description),
+    probability: clampScore(sanitizedInput.probability),
+    impact: clampScore(sanitizedInput.impact),
+    riskScore: calculateRiskScore(sanitizedInput.probability, sanitizedInput.impact),
+    category: normalizeText(sanitizedInput.category) || DEFAULT_CATEGORIES[0],
+    status: sanitizedInput.status ?? 'open',
+    mitigationPlan: normalizeText(sanitizedInput.mitigationPlan ?? ''),
     creationDate: now,
     lastModified: now,
   }
@@ -101,14 +105,14 @@ const fromCSV = (csv: string): Risk[] => {
       if (!title || !description) return null
       return {
         id: id?.replaceAll('"', '') || nanoid(12),
-        title: title.replace(/^"|"$/g, '').replace(/""/g, '"'),
-        description: description.replace(/^"|"$/g, '').replace(/""/g, '"'),
+        title: sanitizeTextInput(title.replace(/^"|"$/g, '').replace(/""/g, '"')),
+        description: sanitizeTextInput(description.replace(/^"|"$/g, '').replace(/""/g, '"')),
         probability: clampScore(Number(probability) || 1),
         impact: clampScore(Number(impact) || 1),
         riskScore: calculateRiskScore(Number(probability) || 1, Number(impact) || 1),
-        category: (category || DEFAULT_CATEGORIES[0]).replace(/^"|"$/g, ''),
+        category: sanitizeTextInput((category || DEFAULT_CATEGORIES[0]).replace(/^"|"$/g, '')),
         status: (status?.replace(/^"|"$/g, '') as Risk['status']) ?? 'open',
-        mitigationPlan: (mitigationPlan || '').replace(/^"|"$/g, '').replace(/""/g, '"'),
+        mitigationPlan: sanitizeTextInput((mitigationPlan || '').replace(/^"|"$/g, '').replace(/""/g, '"')),
         creationDate: creationDate || new Date().toISOString(),
         lastModified: lastModified || new Date().toISOString(),
       } satisfies Risk
@@ -188,36 +192,39 @@ export const useRiskStore = create<RiskStoreState>()(
         return risk
       },
       updateRisk: (id, updates) => {
+        // Sanitize the updates before applying them
+        const sanitizedUpdates = sanitizeRiskInput(updates)
+
         let updatedRisk: Risk | null = null
         set((state) => {
           const risks = state.risks.map((risk) => {
             if (risk.id !== id) return risk
             const merged: Risk = {
               ...risk,
-              ...('probability' in updates
-                ? { probability: clampScore(updates.probability ?? risk.probability) }
+              ...('probability' in sanitizedUpdates
+                ? { probability: clampScore(sanitizedUpdates.probability ?? risk.probability) }
                 : {}),
-              ...('impact' in updates
-                ? { impact: clampScore(updates.impact ?? risk.impact) }
+              ...('impact' in sanitizedUpdates
+                ? { impact: clampScore(sanitizedUpdates.impact ?? risk.impact) }
                 : {}),
             }
 
-            const probability = updates.probability ?? merged.probability
-            const impact = updates.impact ?? merged.impact
+            const probability = sanitizedUpdates.probability ?? merged.probability
+            const impact = sanitizedUpdates.impact ?? merged.impact
 
             updatedRisk = {
               ...merged,
-              title: updates.title ? normalizeText(updates.title) : merged.title,
-              description: updates.description
-                ? normalizeText(updates.description)
+              title: sanitizedUpdates.title ? normalizeText(sanitizedUpdates.title) : merged.title,
+              description: sanitizedUpdates.description
+                ? normalizeText(sanitizedUpdates.description)
                 : merged.description,
-              category: updates.category
-                ? normalizeText(updates.category)
+              category: sanitizedUpdates.category
+                ? normalizeText(sanitizedUpdates.category)
                 : merged.category,
-              mitigationPlan: updates.mitigationPlan
-                ? normalizeText(updates.mitigationPlan)
+              mitigationPlan: sanitizedUpdates.mitigationPlan
+                ? normalizeText(sanitizedUpdates.mitigationPlan)
                 : merged.mitigationPlan,
-              status: updates.status ?? merged.status,
+              status: sanitizedUpdates.status ?? merged.status,
               probability,
               impact,
               riskScore: calculateRiskScore(probability, impact),
@@ -236,7 +243,9 @@ export const useRiskStore = create<RiskStoreState>()(
         }),
       addCategory: (category) =>
         set((state) => {
-          const normalized = normalizeText(category)
+          // Sanitize the category before adding
+          const sanitizedCategory = sanitizeTextInput(category)
+          const normalized = normalizeText(sanitizedCategory)
           if (!normalized || state.categories.includes(normalized)) return state
           return { categories: [...state.categories, normalized] }
         }),

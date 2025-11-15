@@ -186,12 +186,21 @@ test-id,"Imported Risk","Imported Description",3,4,12,"Financial","open","Import
     })
 
     it('should filter risks by severity', () => {
-      // 4*4=16 (high), 1*2=2 (low), 2*3=6 (medium)
+      // 4*4=16 (high), 1*2=2 (low), 2*3=6 (medium with new thresholds)
       useRiskStore.getState().setFilters({ severity: 'high' })
 
       const state = useRiskStore.getState()
-      expect(state.filteredRisks).toHaveLength(1)
+      expect(state.filteredRisks).toHaveLength(1) // Only 'High Risk' (16) should be high
       expect(state.filteredRisks[0].title).toBe('High Risk')
+    })
+
+    it('should correctly identify medium severity risks', () => {
+      // 4*4=16 (high), 1*2=2 (low), 2*3=6 (medium with new thresholds)
+      useRiskStore.getState().setFilters({ severity: 'medium' })
+
+      const state = useRiskStore.getState()
+      expect(state.filteredRisks).toHaveLength(1) // Only 'Medium Risk' (6) should be medium
+      expect(state.filteredRisks[0].title).toBe('Medium Risk')
     })
 
     it('should filter risks by search term', () => {

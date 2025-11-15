@@ -288,10 +288,18 @@ const useVirtualScroll = (items, containerHeight = 400) => {
   // Return visible items and positioning information
 };
 
-// Risk calculation optimization
+// Risk calculation optimization using 5x5 probability-impact matrix (resulting in scores 1-25)
 const calculateRiskScore = memoize((probability, impact) => {
   return probability * impact;
 });
+
+// Risk severity determination based on calculated risk score
+// Low: score <= 3, Medium: score <= 6, High: score > 6
+const getRiskSeverity = (score: number): RiskSeverity => {
+  if (score <= 3) return 'low';
+  if (score <= 6) return 'medium';
+  return 'high';
+};
 ```
 
 ### Loading State Management

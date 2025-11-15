@@ -18,7 +18,7 @@ export const DashboardSidebar = ({
   onSelect,
 }: DashboardSidebarProps) => {
   return (
-    <aside className="hidden lg:flex lg:w-72 xl:w-80">
+    <aside className="hidden lg:flex lg:w-72 xl:w-80" role="navigation" aria-label="Main navigation">
       <div className="rr-panel sticky top-6 flex h-fit min-h-[480px] w-full flex-col gap-6 p-6">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text-low">
@@ -42,11 +42,13 @@ export const DashboardSidebar = ({
                 type="button"
                 onClick={() => onSelect(item.id)}
                 className={cn(
-                  'rounded-2xl border px-4 py-3 text-left transition hover:border-brand-primary/60 hover:bg-brand-primary-light/50',
+                  'rounded-2xl border px-4 py-3 text-left transition hover:border-brand-primary/60 hover:bg-brand-primary-light/50 relative',
                   isActive
                     ? 'border-brand-primary bg-brand-primary-light/60 shadow-card-soft'
                     : 'border-border-subtle bg-surface-secondary',
                 )}
+                aria-current={isActive ? "page" : undefined}
+                aria-label={`${item.label} ${isActive ? '(current page)' : ''}`}
               >
                 <p
                   className={cn(

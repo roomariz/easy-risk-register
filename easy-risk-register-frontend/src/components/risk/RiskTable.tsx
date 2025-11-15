@@ -56,62 +56,73 @@ export const RiskTable = ({
   }
 
   return (
-    <div className="rr-panel overflow-hidden p-0">
-      <Table className="[&_th]:whitespace-nowrap">
+    <div className="rr-panel overflow-hidden p-0" role="region" aria-labelledby="risk-table-title">
+      <h3 id="risk-table-title" className="sr-only">Risk Table</h3>
+      <Table
+        className="[&_th]:whitespace-nowrap"
+        role="table"
+        aria-label="Risk register table showing all risks with their details"
+      >
         <TableHeader className="bg-surface-secondary/60">
-          <TableRow>
-            <TableHead>Risk</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead className="text-center">Probability</TableHead>
-            <TableHead className="text-center">Impact</TableHead>
-            <TableHead className="text-center">Score</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Last updated</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+          <TableRow role="row">
+            <TableHead role="columnheader">Risk</TableHead>
+            <TableHead role="columnheader">Category</TableHead>
+            <TableHead role="columnheader" className="text-center">Probability</TableHead>
+            <TableHead role="columnheader" className="text-center">Impact</TableHead>
+            <TableHead role="columnheader" className="text-center">Score</TableHead>
+            <TableHead role="columnheader">Status</TableHead>
+            <TableHead role="columnheader">Last updated</TableHead>
+            <TableHead role="columnheader" className="text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {risks.map((risk) => (
-            <TableRow key={risk.id}>
-              <TableCell className="max-w-[240px]">
+            <TableRow key={risk.id} role="row">
+              <TableCell className="max-w-[240px]" role="cell">
                 <p className="font-semibold text-text-high">{risk.title}</p>
                 <p className="line-clamp-2 text-sm text-text-low">{risk.description}</p>
               </TableCell>
-              <TableCell>
-                <Badge tone="neutral" className="rounded-full px-3 py-1 text-xs font-semibold">
+              <TableCell role="cell">
+                <Badge tone="neutral" className="rounded-full px-3 py-1 text-xs font-semibold" aria-label={`Category: ${risk.category}`}>
                   {risk.category}
                 </Badge>
               </TableCell>
-              <TableCell className="text-center font-semibold text-text-high">
+              <TableCell className="text-center font-semibold text-text-high" role="cell">
                 {risk.probability}
               </TableCell>
-              <TableCell className="text-center font-semibold text-text-high">
+              <TableCell className="text-center font-semibold text-text-high" role="cell">
                 {risk.impact}
               </TableCell>
-              <TableCell className="text-center">
+              <TableCell className="text-center" role="cell">
                 <Badge
                   tone={getSeverityTone(risk.riskScore)}
                   subtle={false}
                   className="rounded-full px-3 py-1 text-xs font-semibold"
+                  aria-label={`Risk score: ${risk.riskScore}, ${getSeverityTone(risk.riskScore)} severity`}
                 >
                   {risk.riskScore}
                 </Badge>
               </TableCell>
-              <TableCell className="capitalize">{risk.status}</TableCell>
-              <TableCell>{dateFormatter.format(new Date(risk.lastModified))}</TableCell>
-              <TableCell className="text-right">
-                <div className="flex flex-wrap justify-end gap-2">
+              <TableCell role="cell" aria-label={`Status: ${risk.status}`}>
+                <span className="capitalize">{risk.status}</span>
+              </TableCell>
+              <TableCell role="cell" aria-label={`Last updated: ${dateFormatter.format(new Date(risk.lastModified))}`}>
+                {dateFormatter.format(new Date(risk.lastModified))}
+              </TableCell>
+              <TableCell className="text-right" role="cell">
+                <div className="flex flex-wrap justify-end gap-2" role="group" aria-label={`Actions for risk ${risk.title}`}>
                   {onView && (
                     <Button
                       type="button"
                       size="sm"
                       variant="ghost"
                       onClick={() => onView(risk)}
+                      aria-label={`View risk: ${risk.title}`}
                     >
                       View
                     </Button>
                   )}
-                  <Button type="button" size="sm" variant="ghost" onClick={() => onEdit(risk)}>
+                  <Button type="button" size="sm" variant="ghost" onClick={() => onEdit(risk)} aria-label={`Edit risk: ${risk.title}`}>
                     Edit
                   </Button>
                   <Button
@@ -119,6 +130,7 @@ export const RiskTable = ({
                     size="sm"
                     variant="destructive"
                     onClick={() => onDelete(risk.id)}
+                    aria-label={`Delete risk: ${risk.title}`}
                   >
                     Delete
                   </Button>

@@ -88,6 +88,7 @@ export const RiskForm = ({
     <form
       onSubmit={handleSubmit(onFormSubmit)}
       className={cn('flex h-full min-h-full flex-col gap-4', className)}
+      noValidate
     >
       <div className="flex flex-1 flex-col gap-4 pb-1">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
@@ -100,6 +101,7 @@ export const RiskForm = ({
                 placeholder="Supply chain disruption"
                 className="rounded-xl border-border-faint bg-surface-secondary/10 px-4 py-2.5 text-sm focus:ring-brand-primary/30"
                 {...register('title', { required: 'Title is required' })}
+                aria-describedby={errors.title ? 'title-error' : undefined}
               />
               <Controller
                 name="category"
@@ -119,6 +121,7 @@ export const RiskForm = ({
                     onBlur={field.onBlur}
                     name={field.name}
                     placeholder="Select a category"
+                    aria-describedby={errors.category ? 'category-error' : undefined}
                   />
                 )}
               />
@@ -132,6 +135,7 @@ export const RiskForm = ({
               rows={3}
               className="rounded-xl border-border-faint bg-surface-secondary/10 px-4 py-2.5 text-sm focus:ring-brand-primary/30"
               {...register('description', { required: 'Description is required' })}
+              aria-describedby={errors.description ? 'description-error' : undefined}
             />
 
             <div className="grid gap-2.5 md:grid-cols-[minmax(0,0.35fr)_minmax(0,0.65fr)]">
@@ -153,6 +157,7 @@ export const RiskForm = ({
                     onChange={field.onChange}
                     onBlur={field.onBlur}
                     name={field.name}
+                    aria-describedby={errors.status ? 'status-error' : undefined}
                   />
                 )}
               />
@@ -193,8 +198,10 @@ export const RiskForm = ({
                       valueAsNumber: true,
                     })}
                     className="mt-4 h-2 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-brand-primary/20 via-brand-primary/10 to-brand-primary/5 accent-brand-primary focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/25"
+                    aria-label="Probability (1-5)"
+                    aria-describedby="probability-help"
                   />
-                  <p className="mt-1.5 text-[11px] text-text-low">
+                  <p id="probability-help" className="mt-1.5 text-[11px] text-text-low">
                     Estimate likelihood from 1 (rare) to 5 (almost certain).
                   </p>
                 </div>
@@ -216,8 +223,10 @@ export const RiskForm = ({
                       valueAsNumber: true,
                     })}
                     className="mt-4 h-2 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-status-danger/20 via-status-danger/10 to-status-danger/5 accent-status-danger focus:outline-none focus-visible:ring-4 focus-visible:ring-status-danger/25"
+                    aria-label="Impact (1-5)"
+                    aria-describedby="impact-help"
                   />
-                  <p className="mt-1.5 text-[11px] text-text-low">
+                  <p id="impact-help" className="mt-1.5 text-[11px] text-text-low">
                     Gauge downstream effect from 1 (minimal) to 5 (critical).
                   </p>
                 </div>
@@ -229,8 +238,13 @@ export const RiskForm = ({
                     Live score
                   </p>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-4xl font-bold">{riskScore}</span>
-                    <span className="rounded-full border border-border-faint bg-surface-primary/90 px-3 py-0.5 text-xs font-semibold">
+                    <span className="text-4xl font-bold" aria-label={`Risk score: ${riskScore}`}>
+                      {riskScore}
+                    </span>
+                    <span
+                      className="rounded-full border border-border-faint bg-surface-primary/90 px-3 py-0.5 text-xs font-semibold"
+                      aria-label={`Risk severity: ${severity.toUpperCase()}`}
+                    >
                       {severity.toUpperCase()}
                     </span>
                   </div>
@@ -257,11 +271,21 @@ export const RiskForm = ({
 
             <div className="flex flex-wrap items-center justify-end gap-1.5 pt-1">
               {mode === 'edit' && onCancel && (
-                <Button type="button" variant="ghost" onClick={onCancel}>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={onCancel}
+                  aria-label="Cancel editing"
+                >
                   Cancel
                 </Button>
               )}
-              <Button type="submit" disabled={isSubmitting} className="px-6">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="px-6"
+                aria-label={mode === 'create' ? 'Add new risk' : 'Save risk changes'}
+              >
                 {mode === 'create' ? 'Add risk' : 'Save changes'}
               </Button>
             </div>

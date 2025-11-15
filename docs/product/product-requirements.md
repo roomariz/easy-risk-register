@@ -45,7 +45,7 @@ The primary audience includes SMB owners and managers in regulated industries (f
   - Risk score is calculated using probability × impact
   - Scores are displayed visually to indicate severity levels
   - Calculation is updated in real-time when inputs change
-  - Risk score ranges are clearly defined (e.g., Low: 1-3, Medium: 4-6, High: 7-9)
+  - Risk score ranges are clearly defined based on a 5x5 probability-impact matrix (scores 1-25): Low: ≤3, Medium: ≤6, High: >6
 
 #### 2.1.3 Risk Visualization
 - **Feature Description**: Dynamic probability-impact matrix visualization showing all risks

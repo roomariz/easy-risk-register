@@ -189,26 +189,47 @@ function App() {
   return (
     <div className="min-h-screen bg-surface-tertiary text-text-mid">
       <div className="mx-auto flex w-full max-w-[1400px] gap-8 px-4 py-8 sm:px-6 lg:px-10">
+        {/* Skip link for keyboard users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-blue-600"
+        >
+          Skip to main content
+        </a>
+
         <DashboardSidebar
           items={NAV_ITEMS}
           activeItem={activeView}
           onSelect={(view) => setActiveView(view as DashboardView)}
         />
 
-        <div className="flex flex-1 flex-col gap-8">
+        <div id="main-content" className="flex flex-1 flex-col gap-8">
           <SectionHeader
             eyebrow="Easy Risk Register"
             title="Risk management workspace"
             description="Switch between an executive dashboard and a spreadsheet-style table without leaving the page. Capture risks in a focused modal, export reports, or narrow the data with filters."
             actions={
               <div className="flex flex-wrap gap-3">
-                <Button variant="ghost" onClick={() => fileInputRef.current?.click()}>
+                <Button
+                  variant="ghost"
+                  onClick={() => fileInputRef.current?.click()}
+                  aria-label="Import CSV file"
+                >
                   Import CSV
                 </Button>
-                <Button variant="secondary" onClick={handleExport}>
+                <Button
+                  variant="secondary"
+                  onClick={handleExport}
+                  aria-label="Export CSV file"
+                >
                   Export CSV
                 </Button>
-                <Button onClick={handleOpenCreateModal}>New risk</Button>
+                <Button
+                  onClick={handleOpenCreateModal}
+                  aria-label="Create new risk"
+                >
+                  New risk
+                </Button>
               </div>
             }
           />

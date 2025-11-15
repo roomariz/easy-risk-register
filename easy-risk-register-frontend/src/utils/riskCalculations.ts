@@ -11,8 +11,8 @@ export const calculateRiskScore = (probability: number, impact: number) =>
   Math.min(Math.max(probability, 1), 5) * Math.min(Math.max(impact, 1), 5)
 
 export const getRiskSeverity = (score: number): RiskSeverity => {
-  if (score <= 5) return 'low'
-  if (score <= 12) return 'medium'
+  if (score <= 3) return 'low'
+  if (score <= 6) return 'medium'
   return 'high'
 }
 

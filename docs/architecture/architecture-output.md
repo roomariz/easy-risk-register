@@ -191,7 +191,8 @@ const DashboardLayout = () => (
 ### Testable Component Boundaries
 
 #### Unit Testing Strategy
-- Risk calculation functions: `calculateRiskScore(probability, impact)`
+- Risk calculation functions: `calculateRiskScore(probability, impact)` - calculates probability × impact (5x5 matrix, scores 1-25)
+- Risk severity functions: `getRiskSeverity(score)` - determines Low (≤3), Medium (≤6), High (>6)
 - Form validation logic: Input sanitization and validation
 - Export functionality: CSV generation and data integrity
 - State management: Store updates and persistence
@@ -213,7 +214,8 @@ const DashboardLayout = () => (
 - Mitigation plan: Optional, max 2000 characters
 
 #### Data Integrity Checks
-- Risk scores correctly calculated as probability × impact
+- Risk scores correctly calculated as probability × impact (range 1-25 for 5x5 matrix)
+- Risk severity correctly determined: Low (≤3), Medium (≤6), High (>6)
 - Risk IDs are unique and properly formatted (UUID)
 - Dates are properly formatted and consistent
 - Data persists across browser sessions
@@ -239,7 +241,6 @@ const DashboardLayout = () => (
 Since this is a client-side application with no server dependencies, the security model is simplified:
 - All data remains on the user's device
 - No authentication required for basic usage
-- Optional PocketBase authentication for cloud sync (future feature)
 
 ### Data Security Architecture
 
@@ -402,17 +403,6 @@ Since this is a client-side application, these are the internal API contracts fo
 - Response: `{ success: boolean, importedCount: number }`
 - Authentication: Not required
 
-### Future Server API (Optional PocketBase Integration)
-
-**Authentication Endpoint**
-- Method: POST
-- Endpoint: `/api/auth/login`
-- Request Body: `{ email: string, password: string }`
-- Response: `{ token: string }`
-
-**Risk Sync Endpoints** (for cloud sync)
-- Same CRUD operations as above but with authentication headers
-- Additional endpoints for conflict resolution during sync
 
 ## Security and Performance Foundation
 

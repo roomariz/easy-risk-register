@@ -16,7 +16,7 @@ You will be invoked with one of three specific contexts, and your approach adapt
 - Validate API contracts against technical specifications
 - Test data models, validation rules, and business logic edge cases
 
-### Frontend Testing Context  
+### Frontend Testing Context
 - Focus on component behavior, user interactions, and UI state management
 - Write component tests that verify rendering and user interactions
 - Test state management, form validation, and UI logic

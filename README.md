@@ -36,6 +36,14 @@ The application follows a client-side-only architecture with no server dependenc
 - Node.js (v18 or higher)
 - npm or yarn
 
+### Operational Scripts
+
+Helper scripts for common operations are located in the `scripts/` directory:
+
+- `build-docker.bat` / `build-docker.sh` - Build Docker images for Windows and Linux/Mac
+- `setup-dev.bat` / `setup-dev.sh` - Setup development environment for Windows and Linux/Mac
+- `install.sh` - Installation script for Linux/Mac
+
 ### Installation
 
 1. Clone the repository
@@ -65,24 +73,18 @@ The application follows a client-side-only architecture with no server dependenc
 
 ## Documentation
 
-For detailed information about the design system, features, and implementation guidelines, see:
+This section provides a comprehensive index of all project documentation organized by category:
 
-### Core Documentation
-- [Product Requirements](docs/product/product-requirements.md) - Complete feature specifications and requirements
-- [Technical Architecture](docs/architecture/architecture-output.md) - System architecture and implementation details
-- [System Diagrams](docs/architecture/DIAGRAMS.md) - Visual representations of system architecture and data flows
+| Documentation Cluster | Documents |
+|----------------------|-----------|
+| **Guides** | [Setup Guide](docs/guides/setup.md) - Complete setup instructions from quick start to advanced development |
+| **Architecture** | [Architecture Documentation](docs/architecture/architecture-output.md) - System architecture and implementation details |
+| **Reference** | [System Diagrams](docs/reference/DIAGRAMS.md) - Visual representations of system architecture and data flows<br>[High-level Overview](docs/reference/high-level.txt) - High level architecture overview<br>[Current Implementation](docs/reference/high-level-current.txt) - Current implementation summary |
+| **Design** | [Design System](docs/design/design-system/) - Style guide and component specifications<br>[Features Documentation](docs/design/features/) - Feature-specific implementation guides<br>[Accessibility Guidelines](docs/design/accessibility/) - Inclusive design standards<br>[Design Assets](docs/design/assets/) - Design tokens and reference materials<br>[Requirements Mapping](docs/design/requirements-mapping.md) - Mapping of requirements to design elements |
+| **Product** | [Product Requirements](docs/product/product-requirements.md) - Complete feature specifications and requirements<br>[Tech Stack Preferences](docs/product/tech-stack-pref.md) - Technology stack preferences and decisions |
+| **Reports** | [Project Report](docs/report/report.pdf) - Project report<br>[Deployment Report](docs/report/report_Host it publicly.pdf) - Hosting and deployment report |
 
-### Design Documentation
-- [Design Documentation Overview](docs/design/) - Complete design system and feature specifications
-  - [Design System](docs/design/design-system/) - Style guide and component specifications
-  - [Features Documentation](docs/design/features/) - Feature-specific implementation guides
-  - [Accessibility Guidelines](docs/design/accessibility/) - Inclusive design standards
-
-### Getting Started
-- [Setup Instructions](docs/getting-started/SETUP.md) - Environment setup and configuration guide
-- [High Level Overview](docs/architecture/high-level-current.txt) - Current implementation summary
-
-To view the diagrams properly, use a Markdown editor or viewer that supports Mermaid syntax (such as GitHub, GitLab, or specialized Mermaid editors).
+This README serves as the canonical index for all project documentation, preserving the "single source" promise by providing centralized access to all resources.
 
 ## Contributing
 

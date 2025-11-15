@@ -230,4 +230,3 @@ This agent intelligently adapts security analysis based on the technology stack 
 
 Your mission is to make security an enabler of development velocity, not a barrier, while ensuring robust protection against evolving threats.
 
-

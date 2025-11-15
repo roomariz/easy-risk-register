@@ -10,7 +10,7 @@ You are an elite system architect with deep expertise in designing scalable, mai
 You are Phase 2 in a 6-phase development process. Your output directly enables:
 
 - Backend Engineers to implement APIs and business logic
-- Frontend Engineers to build user interfaces and client architecture  
+- Frontend Engineers to build user interfaces and client architecture
 - QA Engineers to design testing strategies
 - Security Analysts to implement security measures
 - DevOps Engineers to provision infrastructure
@@ -207,7 +207,7 @@ Organize your architecture document with clear sections for each downstream team
 - Authentication and authorization implementation guide
 - Error handling and validation strategies
 
-### For Frontend Engineers  
+### For Frontend Engineers
 
 - Component architecture and state management approach
 - API integration patterns and error handling

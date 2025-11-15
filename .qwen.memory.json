@@ -2,7 +2,7 @@
     "rules": [
         {
             "id": "agent-binding-devops-engineer",
-            "path": ".claude/agents/devops-engineer.md",
+            "path": "./agents/devops-engineer.md",
             "enforcement": "strict",
             "apply_to": [
                 "devops-engineer"
@@ -10,7 +10,7 @@
         },
         {
             "id": "agent-binding-product-manager",
-            "path": ".claude/agents/product-manager.md",
+            "path": "./agents/product-manager.md",
             "enforcement": "strict",
             "apply_to": [
                 "product-manager"
@@ -18,7 +18,7 @@
         },
         {
             "id": "agent-binding-qa-analyst",
-            "path": ".claude/agents/qa-analyst.md",
+            "path": "./agents/qa-analyst.md",
             "enforcement": "strict",
             "apply_to": [
                 "qa-analyst"
@@ -26,7 +26,7 @@
         },
         {
             "id": "agent-binding-security-analyst",
-            "path": ".claude/agents/security-analyst.md",
+            "path": "./agents/security-analyst.md",
             "enforcement": "strict",
             "apply_to": [
                 "security-analyst"
@@ -34,7 +34,7 @@
         },
         {
             "id": "agent-binding-sr-backend-engineer",
-            "path": ".claude/agents/sr-backend-engineer.md",
+            "path": "./agents/sr-backend-engineer.md",
             "enforcement": "strict",
             "apply_to": [
                 "sr-backend-engineer"
@@ -42,7 +42,7 @@
         },
         {
             "id": "agent-binding-sr-frontend-engineer",
-            "path": ".claude/agents/sr-frontend-engineer.md",
+            "path": "./agents/sr-frontend-engineer.md",
             "enforcement": "strict",
             "apply_to": [
                 "sr-frontend-engineer"
@@ -50,7 +50,7 @@
         },
         {
             "id": "agent-binding-system-architect",
-            "path": ".claude/agents/system-architect.md",
+            "path": "./agents/system-architect.md",
             "enforcement": "strict",
             "apply_to": [
                 "system-architect"
@@ -58,7 +58,7 @@
         },
         {
             "id": "agent-binding-ux-ui-designer",
-            "path": ".claude/agents/ux-ui-designer.md",
+            "path": "./agents/ux-ui-designer.md",
             "enforcement": "strict",
             "apply_to": [
                 "ux-ui-designer",

@@ -160,7 +160,7 @@ For each component, provide:
 
 **Interaction Specifications**
 - **Hover Transition**: `[duration] [easing]` with visual changes
-- **Click Feedback**: Visual response and state changes  
+- **Click Feedback**: Visual response and state changes
 - **Focus Indicator**: Accessibility-compliant focus treatment
 - **Loading State**: Animation and feedback patterns
 - **Disabled State**: Visual treatment for non-interactive state
@@ -422,7 +422,7 @@ Start each file with this frontmatter:
     feature: [Associated feature name, if applicable]
     last-updated: [ISO date format: YYYY-MM-DD]
     version: [Semantic version if applicable]
-    related-files: 
+    related-files:
       - [relative/path/to/related/file.md]
       - [relative/path/to/another/file.md]
     dependencies:
@@ -508,18 +508,8 @@ Ensure all implementation files include:
 - [ ] **File structure** is complete and follows established conventions
 - [ ] **Cross-references** are accurate and create a cohesive information architecture
 - [ ] **Implementation guidance** is specific and actionable for developers
-- [ ] **Version control** is established with clear update procedures
-- [ ] **Quality assurance** processes are documented and verifiable
+- [ ] **Accessibility documentation** is comprehensive and testable
+- [ ] **Cross-platform specifications** are clearly differentiated where needed
+- [ ] **Version control** and update tracking is properly implemented throughout
 
-### Technical Integration Readiness
-- [ ] **Design tokens** are exportable in formats developers can consume
-- [ ] **Component specifications** include technical implementation details
-- [ ] **API integration points** are identified and documented
-- [ ] **Performance budgets** are established with measurable criteria
-- [ ] **Testing procedures** are defined for design system maintenance
-
-**Critical Success Factor**: Always create the complete directory structure and populate all relevant files in a single comprehensive response. Future agents in the development pipeline will rely on this complete, well-organized documentation to implement designs accurately and efficiently.
-
-> Always begin by deeply understanding the user's journey and business objectives before creating any visual designs. Every design decision should be traceable back to a user need or business requirement, and all documentation should serve the ultimate goal of creating exceptional user experiences.
-
-
+Your design deliverables serve as comprehensive roadmaps for developers, ensuring beautiful, functional, and accessible implementations that perfectly translate product requirements into exceptional user experiences.

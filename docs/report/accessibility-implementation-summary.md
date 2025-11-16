@@ -82,7 +82,7 @@ This document summarizes the implementation of WCAG 2.1 AA compliance for the Ea
 - `src/components/AccessibilityTester.tsx` - Automated accessibility testing component
 - `src/utils/focusTrap.ts` - Focus management utilities
 - `public/accessibility-statement.md` - Accessibility statement
-- `ACCESSIBILITY.md` - Accessibility documentation
+- `accessibility.md` - Accessibility documentation
 
 ## Testing Strategy
 

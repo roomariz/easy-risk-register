@@ -27,7 +27,7 @@ A privacy-focused, client-side risk management application for small and medium-
 
 ## Architecture
 
-This application follows a client-side-only architecture with no server dependencies. All data is stored in browser local storage, ensuring complete privacy and data security. The application implements robust security measures including input sanitization to prevent XSS attacks, as detailed in the SECURITY.md documentation.
+This application follows a client-side-only architecture with no server dependencies. All data is stored in browser local storage, ensuring complete privacy and data security. The application implements robust security measures including input sanitization to prevent XSS attacks, as detailed in the security.md documentation.
 
 ## Components Structure
 

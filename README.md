@@ -147,14 +147,24 @@ This section provides a comprehensive index of all project documentation organiz
 
 | Documentation Cluster | Documents |
 |----------------------|-----------|
+| **Architecture** | [Architecture Documentation](docs/architecture/architecture-diagrams.md) - System architecture with integrated diagrams<br>[System Architecture](docs/architecture/architecture-output.md) - System architecture and implementation details |
 | **Guides** | [Setup Guide](docs/guides/setup.md) - Complete setup instructions from quick start to advanced development<br>[Testing Guide](docs/guides/testing.md) - How to run and write tests<br>[Contributing Guide](docs/guides/contributing.md) - Guidelines for contributing to the project<br>[Development Workflow](docs/guides/development-workflow.md) - Standard development process and commands<br>[Code Style Guide](docs/guides/code-style.md) - Coding standards and best practices |
-| **Architecture** | [Architecture Documentation](docs/architecture/architecture-output.md) - System architecture and implementation details |
 | **Reference** | [System Diagrams](docs/reference/diagrams.md) - Visual representations of system architecture and data flows<br>[High-level Overview](docs/reference/high-level.txt) - High level architecture overview<br>[Current Implementation](docs/reference/high-level-current.txt) - Current implementation summary |
 | **Design** | [Design System](docs/design/design-system/) - Style guide and component specifications<br>[Features Documentation](docs/design/features/) - Feature-specific implementation guides<br>[Accessibility Guidelines](docs/design/accessibility/) - Inclusive design standards<br>[Design Assets](docs/design/assets/) - Design tokens and reference materials<br>[Requirements Mapping](docs/design/requirements-mapping.md) - Mapping of requirements to design elements |
 | **Product** | [Product Requirements](docs/product/product-requirements.md) - Complete feature specifications and requirements<br>[Tech Stack Preferences](docs/product/tech-stack-pref.md) - Technology stack preferences and decisions |
 | **Reports & Analysis** | [Project Report](docs/report/report.pdf) - Project report<br>[Deployment Report](docs/report/report-host-it-publicly.pdf) - Hosting and deployment report<br>[Compliance Report](docs/report/compliance-report.md) - 100% compliance achievement with minor documentation clarifications<br>[Security Analysis Summary](docs/report/security-analysis-summary.md) - Comprehensive security assessment and implementation<br>[Accessibility Implementation Summary](docs/report/accessibility-implementation-summary.md) - WCAG 2.1 AA compliance implementation details |
 
 This README serves as the canonical index for all project documentation, preserving the "single source" promise by providing centralized access to all resources.
+
+## Integrated Diagrams in Documentation
+
+The Easy Risk Register documentation includes integrated PlantUML and Mermaid diagrams directly within markdown files. This approach ensures diagrams remain version-controlled with the codebase and are always synchronized with documentation content. You'll find:
+
+- Architecture diagrams showing system components and data flows
+- Component architecture with visual hierarchy
+- User journey flows and workflows
+- Data flow diagrams illustrating how information moves through the application
+- Performance and security architecture visualizations
 
 ## Contributing
 

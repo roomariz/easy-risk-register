@@ -14,6 +14,10 @@ This documentation contains the complete design system, feature specifications, 
 
 ## Table of Contents
 
+- [Architecture](../architecture/)
+  - [System Architecture](../architecture/architecture-diagrams.md)
+  - [User Journey](../architecture/system-architecture.md)
+
 - [Design System](./design-system/README.md)
   - [Style Guide](./design-system/style-guide.md)
   - [Components](./design-system/components/)
@@ -37,6 +41,7 @@ This documentation contains the complete design system, feature specifications, 
 - [Features](./features/)
   - [Risk Management](./features/risk-management/README.md)
     - [User Journey](./features/risk-management/user-journey.md)
+    - [Component Architecture](./features/risk-management/component-architecture.md)
     - [Screen States](./features/risk-management/screen-states.md)
     - [Interactions](./features/risk-management/interactions.md)
     - [Accessibility](./features/risk-management/accessibility.md)

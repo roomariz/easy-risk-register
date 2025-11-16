@@ -1,233 +1,335 @@
----
-title: Easy Risk Register - Risk Management User Journey
-description: Complete user journey mapping for the risk management workflow in Easy Risk Register
-last-updated: 2025-11-08
-version: 1.0.0
-status: draft
-related-files:
-  - ./README.md
-  - ../design-system/components/cards.md
-  - ../design-system/components/forms.md
-dependencies:
-  - Feature design brief
-  - Core component specifications
----
-
-# Easy Risk Register - Risk Management User Journey
+# User Journey Documentation - Easy Risk Register
 
 ## Overview
 
-This document maps the complete user journey for the Risk Management feature, covering all primary and secondary user flows. It details the user's path from initial dashboard view through risk creation, management, and reporting.
+This document outlines the primary user journeys and experiences for the Easy Risk Register application, including visual flow diagrams to illustrate the user interaction patterns.
 
-## Core Experience Flow
+## Primary User Journeys
 
-### Step 1: Dashboard Entry Point
-- **Trigger**: User opens the application or navigates to the dashboard
-- **State Description**: 
-  - Clean dashboard showing risk summary cards
-  - Visual indicators for risk count, high-priority risks, trends
-  - Quick actions for creating a new risk or viewing all risks
-  - Probability-impact matrix visualization of existing risks
+### 1. First-Time User Journey
 
-- **Available Actions**:
-  - "Create New Risk" button (primary)
-  - "View All Risks" link
-  - "Export Data" option
-  - Filter and sort controls
+```mermaid
+journey
+    title First-Time User Journey
+    section Getting Started
+      User: 3: View landing page
+      User: 2: Understand application purpose
+      User: 1: Explore dashboard demo
+    section Creating First Risk
+      User: 3: Navigate to risk creation
+      User: 2: Fill risk details form
+      User: 1: Submit first risk entry
+    section Understanding Risk Scoring
+      User: 3: View calculated risk score
+      User: 2: Interact with risk matrix visualization
+      User: 1: Understand risk severity levels
+    section Data Management
+      User: 2: Export risk data
+      User: 1: Clear test data after evaluation
+```
 
-- **Visual Hierarchy**:
-  - Dashboard title at top
-  - Summary cards with key metrics
-  - Risk matrix visualization
-  - Quick action buttons in prominent positions
+### 2. Regular Risk Management Journey
 
-- **System Feedback**:
-  - Page loading indicator if data is being fetched
-  - Empty state if no risks exist yet
-  - Success confirmation if returning from successful risk creation
+```plantuml
+@startuml
+!theme plain
+title Regular Risk Management Workflow
 
-### Step 2: Risk Creation - Primary Task
-- **Task Flow**:
-  1. User clicks "Create New Risk" button
-  2. Modal form appears with risk creation fields
-  3. User fills in risk details (description, category, probability, impact)
-  4. System calculates risk score in real-time
-  5. User adds mitigation plan if applicable
-  6. User submits the form
+start
+:User accesses application;
+if (Has existing risks?) then (yes)
+  :Loads existing risks from storage;
+  :Displays dashboard with stored data;
+else (no)
+  :Shows empty state with instructions;
+endif
 
-- **State Changes**:
-  - Background dims to focus on modal
-  - Form fields highlight as user progresses through
-  - Risk score updates dynamically as probability/impact change
-  - Validation errors appear for incomplete required fields
+:User selects action;
+if (Action is "Add Risk"?) then (yes)
+  :Open risk creation form;
+  :User fills risk details;
+  :Validate input data;
+  if (Data is valid?) then (yes)
+    :Calculate risk score (probability × impact);
+    :Save risk to storage;
+    :Show success notification;
+    :Update dashboard view;
+  else (no)
+    :Display validation errors;
+    :User corrects data;
+  endif
+elseif (Action is "View Risks"?) then (yes)
+  :Load and display risk list;
+  :Show risk matrix visualization;
+  :Display risk summary statistics;
+elseif (Action is "Filter/Sort"?) then (yes)
+  :Apply filters to risk display;
+  :Update visualizations;
+endif
 
-- **Error Prevention**:
-  - Required field indicators with asterisks
-  - Real-time validation for input formats
-  - Clear error messages with specific guidance
-  - Confirmation before leaving form with unsaved changes
+:User interacts with existing risks;
+if (User edits risk?) then
+  :Open edit form with current values;
+  :Update risk data on save;
+  :Recalculate risk score if needed;
+elseif (User deletes risk?) then
+  :Confirm deletion with user;
+  :Remove risk from storage;
+  :Update all views;
+endif
 
-- **Progressive Disclosure**:
-  - Basic fields visible by default
-  - Additional details expandable in the form
-  - Help text appears on hover for complex concepts
+stop
 
-- **Microcopy**:
-  - Descriptive labels for all fields
-  - Contextual help text for probability/impact scales
-  - Clear call-to-action on submit button
+note right
+  All actions happen client-side
+  Data persists in browser storage
+  Risk score automatically calculated
+end note
 
-### Step 3: Risk List - Management and Review
-- **State Description**:
-  - Responsive grid or list view of risk cards
-  - Each card shows key information: title, risk score, status, category
-  - Filtering and sorting controls at the top
-  - Pagination for large numbers of risks
+@enduml
+```
 
-- **Available Actions**:
-  - Click risk card to view details
-  - Edit risk through card action button
-  - Delete risk through card action button
-  - Filter and sort risks
-  - Export risk list
+## Detailed Feature Workflows
 
-- **Navigation Elements**:
-  - Breadcrumb showing location: Dashboard → Risks
-  - Sidebar navigation for app sections
-  - Search bar for finding specific risks
+### Risk Creation Workflow
 
-- **Keyboard Navigation**:
-  - Tab through cards and actions
-  - Arrow keys to navigate between risk items
-  - Enter to select a risk card
+```mermaid
+flowchart TD
+    A[User clicks "Add New Risk"] --> B[Open Risk Creation Modal]
+    B --> C[Display empty risk form]
+    C --> D[User inputs risk details]
+    D --> E[Real-time validation]
+    E --> F{Form valid?}
+    F -->|No| G[Show validation errors]
+    G --> D
+    F -->|Yes| H[Calculate risk score]
+    H --> I[Save risk to store]
+    I --> J[Update UI with new risk]
+    J --> K[Close modal and show success message]
+    K --> L[Risk appears in list and matrix]
 
-#### Advanced Users & Edge Cases
-**Power User Shortcuts**:
-- Keyboard shortcuts for common actions
-- Bulk operations for multiple risks
-- Quick-add functionality for rapid data entry
+    style A fill:#e1f5fe
+    style L fill:#e8f5e8
+    style F fill:#fff3e0
+</flowchart>
 
-**Empty States**:
-- First-time use: Guided onboarding to create first risk
-- No risks found after filtering: Clear filtering instructions
-- No risks exist: Encouragement to create first risk with clear CTA
+## Risk Matrix Visualization Journey
 
-**Error States**:
-- Data loading failure: Clear error message with retry option
-- Local storage unavailable: Warning about data persistence
-- Import/export errors: Specific error messages with resolution steps
+```plantuml
+@startuml
+!theme plain
+title Risk Matrix Interaction Flow
 
-**Loading States**:
-- Initial data load: Skeleton cards with loading animation
-- Form submission: Button loading state with progress indicator
-- Data refresh: Subtle loading indicators on updated sections
+rectangle "Risk Matrix Visualization" as Matrix {
+  rectangle "5x5 Grid" as Grid {
+    rectangle "Low Risk Zone (1-3)" as Low
+    rectangle "Medium Risk Zone (4-6)" as Medium  
+    rectangle "High Risk Zone (7-25)" as High
+  }
+  
+  rectangle "Risk Markers" as Markers
+  rectangle "Category Filters" as Filters
+  rectangle "Risk Details Popover" as Popover
+}
 
-**Offline/Connectivity**:
-- N/A for fully client-side application
-- Clear messaging if storage is unavailable
-- Automatic save to local storage when possible
+Filters --> Grid : Filter by category
+Markers --> Grid : Position by prob/impact
+Popover --> Markers : Show on hover/click
 
-### Step 4: Risk Detail View - Information Access
-- **State Description**:
-  - Full page showing all information for a selected risk
-  - Clear back navigation to risk list
-  - Detailed information: description, probability, impact, risk score, mitigation plan
-  - Edit and delete action buttons
+note bottom of Matrix
+  Interactive visualization
+  Color-coded by severity
+  Click to view/edit details
+end note
 
-- **Available Actions**:
-  - Edit risk information
-  - Delete risk with confirmation
-  - Return to risk list
-  - View related risks or metrics
+@enduml
+```
 
-- **Content Strategy**:
-  - Clear section headers for each information type
-  - Proper formatting for long text areas
-  - Visual emphasis on risk score and critical information
+### Data Export Journey
 
-### Step 5: Risk Editing - Update Process
-- **State Description**:
-  - Edit form pre-filled with existing risk information
-  - Clear indication that this is an edit rather than create operation
-  - Save and cancel actions clearly positioned
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant A as Application
+    participant S as Storage
+    participant E as Export System
 
-- **Available Actions**:
-  - Save changes
-  - Cancel and return to detail view
-  - Reset form to original values
+    U->>A: Click Export Button
+    A->>S: Retrieve all risk data
+    S-->>A: Return stored risks
+    A->>A: Process data for export format
+    A->>E: Generate CSV string
+    E-->>A: Return formatted data
+    A->>U: Provide downloadable file
+    U->>U: Save exported file to device
+```
 
-- **State Changes**:
-  - Form updates reflect in real-time risk score
-  - Validation occurs as user modifies fields
-  - Save button enabled only when changes exist
+## Accessibility Journey
 
-### Step 6: Export and Reporting - Data Management
-- **State Description**:
-  - Export options panel with format selections
-  - Preview of exportable data
-  - Download button with progress indicator
+### Screen Reader Experience
 
-- **Available Actions**:
-  - Select export format (CSV)
-  - Download file
-  - Cancel export operation
+```plantuml
+@startuml
+!theme plain
+title Accessibility - Screen Reader Flow
 
-- **System Feedback**:
-  - Progress indicator during export preparation
-  - Success confirmation after download
-  - Error messages for export failures
+component "Screen Reader" as SR
+component "Risk Form" as Form
+component "Form Labels" as Labels
+component "Validation Messages" as Validation
+component "ARIA Attributes" as ARIA
+component "Focus Management" as Focus
 
-## Alternative User Journeys
+SR --> Form : Navigates via tab order
+Form --> Labels : Provides semantic labels
+SR --> Validation : reads error messages
+Form --> ARIA : Provides live region updates
+Form --> Focus : Manages keyboard navigation
 
-### Bulk Import Journey
-1. User navigates to settings or import section
-2. User uploads CSV file with risk data
-3. Application previews import data
-4. User confirms import
-5. Risks are added to existing collection
+note right of SR
+  All form elements have proper labels
+  Validation errors announced clearly
+  Focus trapped in modals
+end note
 
-### Matrix Visualization Journey
-1. User views dashboard or risk list
-2. User interacts with probability-impact matrix
-3. User filters risks in matrix view
-4. User selects risks from matrix for detailed view
+@enduml
+```
 
-### Reporting Journey
-1. User selects export option from dashboard or risk list
-2. User chooses risk data to export
-3. User downloads report in selected format
-4. User opens report in appropriate application (e.g., Excel)
+## Responsive Design Journey
 
-## User Task Priorities
+### Multi-Device Experience
 
-### Primary Tasks (Should be most prominent)
-1. Create new risks
-2. View existing risks
-3. Edit risk information
-4. Understand risk priority via scoring
+```mermaid
+graph LR
+    A[Desktop Experience] --> B[Tablet Experience]
+    B --> C[Mobile Experience]
+    
+    subgraph "Responsive Breakpoints"
+        D[Large Screens: 1200px+]
+        E[Tablet: 768px - 1199px] 
+        F[Mobile: 320px - 767px]
+    end
+    
+    A --> D
+    B --> E
+    C --> F
 
-### Secondary Tasks (Should be accessible but not primary)
-1. Export risk data
-2. Filter and sort risks
-3. View risk matrix visualization
-4. Categorize risks
+    style D fill:#e1f5fe
+    style E fill:#f3e5f5
+    style F fill:#fff3e0
+```
 
-### Tertiary Tasks (Should be discoverable)
-1. Import risk data
-2. Adjust application settings
-3. Access help and support
-4. Manage local storage
+## Error Handling Journey
 
-## User Pain Points and Solutions
+### Handling Data Issues
 
-### Pain Point: Risk Prioritization Confusion
-**Solution**: Clear risk scoring with probability × impact calculation displayed prominently
-**Implementation**: Real-time score calculation with visual indicators
+```plantuml
+@startuml
+!theme plain
+title Error Handling - Data Management
 
-### Pain Point: Information Overload
-**Solution**: Progressive disclosure of risk information
-**Implementation**: Summary view with detailed view available
+start
+:User performs data operation;
+if (Operation successful?) then (yes)
+  :Show success confirmation;
+  :Update UI accordingly;
+  stop
+else (no)
+  :Detect error type;
+  if (Storage quota exceeded?) then
+    :Show quota warning;
+    :Suggest export/cleanup;
+  elseif (Corrupted data?) then
+    :Show data recovery options;
+    :Offer to clear and restart;
+  elseif (Validation error?) then
+    :Highlight problem fields;
+    :Show specific error messages;
+  endif
+  :Allow user to retry or cancel;
+endif
 
-### Pain Point: Data Security Concerns
-**Solution**: Clear privacy-first messaging and local storage only
-**Implementation**: Status indicators for local data storage with no server transfer
+stop
+
+note right
+  All error states have clear user guidance
+  Recovery options always provided
+  No data loss under any circumstances
+end note
+
+@enduml
+```
+
+## Performance Journey
+
+### Optimized User Experience
+
+```mermaid
+graph TD
+    A[App Load Performance] --> B[Initial Render]
+    B --> C[Data Load]
+    C --> D[Component Hydration]
+    D --> E[Interactive State]
+    
+    subgraph "Optimization Strategies"
+        F[Code Splitting]
+        G[Component Memoization]
+        H[Virtual Scrolling]
+        I[Debounced Updates]
+    end
+    
+    F --> B
+    G --> D
+    H --> C
+    I --> E
+
+    style A fill:#e8f5e8
+    style E fill:#e8f5e8
+    style F fill:#fff3e0
+    style G fill:#fff3e0
+    style H fill:#fff3e0
+    style I fill:#fff3e0
+```
+
+## User Personas Journey
+
+### Target User Experience
+
+```plantuml
+@startuml
+!theme plain
+title User Persona - Risk Manager (30-50 years)
+
+package "User Characteristics" {
+  [Business Owner/Risk Manager] as User
+  [Moderate Tech Skills] as Skills
+  [Time-Constrained] as Time
+  [Privacy Concerned] as Privacy
+}
+
+package "Application Response" {
+  [Simple Interface] as Simple
+  [Quick Risk Entry] as Quick
+  [Local Data Storage] as Local
+  [Clear Visualizations] as Visual
+}
+
+User --> Skills
+User --> Time
+User --> Privacy
+
+Simple --> User
+Quick --> Time
+Local --> Privacy
+Visual --> Skills
+
+note bottom
+  Designed for efficiency and privacy
+  Minimal learning curve required
+  All data stays on user's device
+end note
+
+@enduml
+```
+
+This documentation provides a comprehensive view of user interactions with the Easy Risk Register application, showing how the application responds to different user needs and scenarios while maintaining the simplicity and privacy-focused approach of the product.

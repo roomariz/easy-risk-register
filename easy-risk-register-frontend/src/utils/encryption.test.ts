@@ -3,10 +3,8 @@ import { generateEncryptionKey, encryptData, decryptData, generateKeyString, exp
 import SecureStorage from './SecureStorage';
 import ZustandEncryptedStorage from './ZustandEncryptedStorage';
 
-const globalWithWindow = globalThis as typeof globalThis & {
-  window?: typeof globalThis & { crypto?: Crypto; localStorage?: Storage };
-};
-const mockWindow = (globalWithWindow.window ??= globalWithWindow);
+const mockWindow = globalThis as typeof globalThis & { window?: Window & typeof globalThis };
+(mockWindow as any).window = mockWindow;
 
 // Mock localStorage for testing
 const mockLocalStorage = (() => {

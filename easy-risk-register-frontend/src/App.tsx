@@ -129,7 +129,10 @@ function App() {
     reader.onload = (loadEvent) => {
       const content = loadEvent.target?.result
       if (typeof content === 'string') {
-        actions.importFromCSV(content)
+        const importedCount = actions.importFromCSV(content)
+        if (importedCount === 0) {
+          alert('No risks were imported. The CSV file may contain invalid content or potential injection attempts.')
+        }
       }
     }
     reader.readAsText(file)

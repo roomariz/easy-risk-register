@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { sanitizeTextInput, sanitizeRiskInput } from './sanitization'
+import { sanitizeTextInput, sanitizeRiskInput, validateCSVContent } from './sanitization'
 
 describe('Sanitization utility functions', () => {
   describe('sanitizeTextInput', () => {
@@ -110,6 +110,38 @@ describe('Sanitization utility functions', () => {
       }
       const result = sanitizeRiskInput(input)
       expect(result).toEqual({ probability: 3, impact: 4 })
+    })
+  })
+
+  describe('validateCSVContent', () => {
+    it('should return true for safe CSV content', () => {
+      const safeCSV = 'title,description\nRisk 1,This is safe content\nRisk 2,More safe content'
+      expect(validateCSVContent(safeCSV)).toBe(true)
+    })
+
+    it('should return false for CSV with formula injection', () => {
+      const dangerousCSV = '=cmd|\'/C calc\'!A0\nTitle,Description'
+      expect(validateCSVContent(dangerousCSV)).toBe(false)
+    })
+
+    it('should return false for CSV starting with +', () => {
+      const dangerousCSV = '+1+1+1\nTitle,Description'
+      expect(validateCSVContent(dangerousCSV)).toBe(false)
+    })
+
+    it('should return false for CSV starting with -', () => {
+      const dangerousCSV = '-1+1+1\nTitle,Description'
+      expect(validateCSVContent(dangerousCSV)).toBe(false)
+    })
+
+    it('should return false for CSV starting with @', () => {
+      const dangerousCSV = '@SUM(A1:A5)\nTitle,Description'
+      expect(validateCSVContent(dangerousCSV)).toBe(false)
+    })
+
+    it('should return true for CSV with formula-like content in data fields', () => {
+      const csvWithSafeFormulaText = 'title,description\nRisk with formula,"This contains =text but is safe"\nRisk 2,"More +content here"'
+      expect(validateCSVContent(csvWithSafeFormulaText)).toBe(true)
     })
   })
 })

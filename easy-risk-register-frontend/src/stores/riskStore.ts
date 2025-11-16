@@ -11,7 +11,7 @@ import {
   computeRiskStats,
   filterRisks,
 } from '../utils/riskCalculations'
-import { sanitizeRiskInput, sanitizeTextInput } from '../utils/sanitization'
+import { sanitizeRiskInput, sanitizeTextInput, validateCSVContent } from '../utils/sanitization'
 import ZustandEncryptedStorage from '../utils/ZustandEncryptedStorage'
 
 const clampScore = (value: number) => Math.min(Math.max(Math.round(value), 1), 5)
@@ -105,6 +105,12 @@ const toCSV = (risks: Risk[]): string => {
 }
 
 const fromCSV = (csv: string): Risk[] => {
+  // Validate CSV content for potential injection attacks
+  if (!validateCSVContent(csv)) {
+    console.error('CSV validation failed: Potential injection attack detected');
+    return [];
+  }
+
   // Use papaparse to securely parse the CSV
   const results = Papa.parse(csv, {
     header: true, // Use first row as headers

@@ -9,7 +9,7 @@ import {
   TableHead,
   TableCell,
   TableCaption,
-} from './Table'
+} from '../../../src/design-system'
 
 describe('Table components', () => {
   describe('Table', () => {

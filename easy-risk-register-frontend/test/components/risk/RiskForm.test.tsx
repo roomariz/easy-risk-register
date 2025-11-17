@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { useForm } from 'react-hook-form'
-import { RiskForm } from './RiskForm'
+import { RiskForm } from '../../../src/components/risk/RiskForm'
 
 // Mock react-hook-form
 vi.mock('react-hook-form', async () => {
@@ -26,8 +26,8 @@ let mockFieldCounter = 0
 const getMockFieldId = () => `mock-field-${mockFieldCounter++}`
 
 // Mock design system components
-vi.mock('../../design-system', async () => {
-  const actual = await vi.importActual('../../design-system')
+vi.mock('../../../src/design-system', async () => {
+  const actual = await vi.importActual('../../../src/design-system')
   return {
     ...actual,
     Button: ({ children, ...props }: any) => (

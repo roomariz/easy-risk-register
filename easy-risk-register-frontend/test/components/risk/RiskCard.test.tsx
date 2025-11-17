@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { RiskCard } from './RiskCard'
-import type { Risk } from '../../types/risk'
+import { RiskCard } from '../../../src/components/risk/RiskCard'
+import type { Risk } from '../../../src/types/risk'
 
 // Mock design system components
-vi.mock('../../design-system', async () => {
-  const actual = await vi.importActual('../../design-system')
+vi.mock('../../../src/design-system', async () => {
+  const actual = await vi.importActual('../../../src/design-system')
   return {
     ...actual,
     Button: ({ children, ...props }: any) => (

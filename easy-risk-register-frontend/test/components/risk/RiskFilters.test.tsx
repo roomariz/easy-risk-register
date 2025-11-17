@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { RiskFiltersBar } from './RiskFilters'
-import type { RiskFilters } from '../../types/risk'
+import { RiskFiltersBar } from '../../../src/components/risk/RiskFilters'
+import type { RiskFilters } from '../../../src/types/risk'
 
 const baseFilters: RiskFilters = {
   search: '',

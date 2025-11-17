@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { RiskSummaryCards } from './RiskSummaryCards'
-import type { RiskStats } from '../../types/risk'
+import { RiskSummaryCards } from '../../../src/components/risk/RiskSummaryCards'
+import type { RiskStats } from '../../../src/types/risk'
 
 // Provide a static mock for framer-motion to avoid animation side effects in tests
 vi.mock('framer-motion', async () => {
@@ -26,8 +26,8 @@ const statCardMock = vi.fn(({ label, value, description, accent }: any) => (
   </div>
 ))
 
-vi.mock('../../design-system', async () => {
-  const actual = await vi.importActual('../../design-system')
+vi.mock('../../../src/design-system', async () => {
+  const actual = await vi.importActual('../../../src/design-system')
   return {
     ...actual,
     StatCard: (props: any) => statCardMock(props),

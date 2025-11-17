@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { useRiskStore } from './src/stores/riskStore'
-import type { RiskInput } from './src/types/risk'
+import { useRiskStore } from '../../src/stores/riskStore'
+import type { RiskInput } from '../../src/types/risk'
 
 // Mock nanoid to have predictable IDs for testing
 vi.mock('nanoid', () => ({

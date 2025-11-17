@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { RiskList } from './RiskList'
+import { RiskList } from '../../../src/components/risk/RiskList'
 
 // Mock RiskCard component
-vi.mock('./RiskCard', () => ({
+vi.mock('../../../src/components/risk/RiskCard', () => ({
   RiskCard: ({ risk, onEdit, onDelete, onView }: any) => (
     <div data-testid={`risk-card-${risk.id}`}>
       <span>{risk.title}</span>

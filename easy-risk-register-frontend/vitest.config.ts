@@ -11,6 +11,13 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
-    include: ['**/*.test.{ts,tsx}']
+    // Include tests from the new dedicated test directory structure
+    include: ['test/**/*.test.{ts,tsx}', 'src/**/*.test.{ts,tsx}'],
+    exclude: [
+      'node_modules/**',
+      'dist/**',
+      'cypress/**',
+      '.{git,svn,hg}/**'
+    ]
   }
 })

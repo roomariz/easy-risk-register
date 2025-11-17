@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
-import { Modal } from './Modal'
+import { Modal } from '../../../src/design-system'
 
 // Mock framer-motion to prevent animation-related issues in tests
 vi.mock('framer-motion', async () => {

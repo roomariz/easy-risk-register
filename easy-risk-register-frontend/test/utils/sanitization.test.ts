@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { sanitizeTextInput, sanitizeRiskInput, validateCSVContent } from './sanitization'
+import { sanitizeTextInput, sanitizeRiskInput, validateCSVContent } from '../../src/utils/sanitization'
 
 describe('Sanitization utility functions', () => {
   describe('sanitizeTextInput', () => {

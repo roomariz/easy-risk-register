@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent, within } from '@testing-library/react'
-import { RiskTable } from './RiskTable'
-import type { Risk } from '../../types/risk'
+import { RiskTable } from '../../../src/components/risk/RiskTable'
+import type { Risk } from '../../../src/types/risk'
 
 // Mock design system components
-vi.mock('../../design-system', async () => {
-  const actual = await vi.importActual('../../design-system')
+vi.mock('../../../src/design-system', async () => {
+  const actual = await vi.importActual('../../../src/design-system')
   return {
     ...actual,
     Button: ({ children, ...props }: any) => (
@@ -257,6 +257,7 @@ describe('RiskTable', () => {
     // Test low severity (score <= 3)
     const lowRisk: Risk = {
       ...mockRisk1,
+      id: 'low-risk-id',
       riskScore: 2,
       title: 'Low Risk'
     }
@@ -264,6 +265,7 @@ describe('RiskTable', () => {
     // Test medium severity (score 4-6)
     const mediumRisk: Risk = {
       ...mockRisk1,
+      id: 'medium-risk-id',
       riskScore: 5,
       title: 'Medium Risk'
     }

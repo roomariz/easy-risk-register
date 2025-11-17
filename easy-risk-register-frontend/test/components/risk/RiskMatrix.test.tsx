@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { RiskMatrix } from './RiskMatrix'
+import { RiskMatrix } from '../../../src/components/risk/RiskMatrix'
 
 // Mock Badge component
-vi.mock('../../design-system', () => ({
+vi.mock('../../../src/design-system', () => ({
   Badge: ({ children, tone }: any) => (
     <span data-testid={`badge-${tone}`}>{children}</span>
   ),

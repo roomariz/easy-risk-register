@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
-import { StatCard } from './StatCard'
+import { StatCard } from '../../../src/design-system'
 
 describe('StatCard', () => {
   it('renders label correctly', () => {

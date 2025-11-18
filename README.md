@@ -210,6 +210,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 We take security seriously. If you discover a security vulnerability, please report it to us responsibly by following our [Security Policy](SECURITY.md). For more information about our security measures and reporting process, see our [security documentation](SECURITY.md).
 
+### Automated Security Scanning
+
+The project includes automated secret scanning in the CI/CD pipeline using Gitleaks to prevent sensitive information from being committed to the repository. The scanning runs on every push and pull request to main branches and can be found in:
+- `.github/workflows/gitleaks-scan.yml`
+- `.github/workflows/security-scanning.yml`
+
 ## Support
 
 For support, please open an issue in the GitHub repository.

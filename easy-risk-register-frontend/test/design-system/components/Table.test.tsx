@@ -105,20 +105,28 @@ describe('Table components', () => {
     it('applies correct styling', () => {
       render(
         <table>
-          <TableHeader>Test Header Content</TableHeader>
+          <TableHeader>
+            <tr>
+              <th>Test Header Content</th>
+            </tr>
+          </TableHeader>
         </table>
       )
-      const header = screen.getByText('Test Header Content')
+      const header = screen.getByText('Test Header Content').closest('thead') as HTMLElement
       expect(header).toHaveClass('[&_tr]:border-b')
     })
 
     it('applies custom class names', () => {
       render(
         <table>
-          <TableHeader className="custom-header">Test Header Content</TableHeader>
+          <TableHeader className="custom-header">
+            <tr>
+              <th>Test Header Content</th>
+            </tr>
+          </TableHeader>
         </table>
       )
-      const header = screen.getByText('Test Header Content')
+      const header = screen.getByText('Test Header Content').closest('thead') as HTMLElement
       expect(header).toHaveClass('custom-header')
     })
   })
@@ -140,20 +148,28 @@ describe('Table components', () => {
     it('applies correct styling', () => {
       render(
         <table>
-          <TableBody>Test Body Content</TableBody>
+          <TableBody>
+            <tr>
+              <td>Test Body Content</td>
+            </tr>
+          </TableBody>
         </table>
       )
-      const body = screen.getByText('Test Body Content')
+      const body = screen.getByText('Test Body Content').closest('tbody') as HTMLElement
       expect(body).toHaveClass('[&_tr:last-child]:border-0')
     })
 
     it('applies custom class names', () => {
       render(
         <table>
-          <TableBody className="custom-body">Test Body Content</TableBody>
+          <TableBody className="custom-body">
+            <tr>
+              <td>Test Body Content</td>
+            </tr>
+          </TableBody>
         </table>
       )
-      const body = screen.getByText('Test Body Content')
+      const body = screen.getByText('Test Body Content').closest('tbody') as HTMLElement
       expect(body).toHaveClass('custom-body')
     })
   })
@@ -175,20 +191,28 @@ describe('Table components', () => {
     it('applies correct styling', () => {
       render(
         <table>
-          <TableFooter>Test Footer Content</TableFooter>
+          <TableFooter>
+            <tr>
+              <td>Test Footer Content</td>
+            </tr>
+          </TableFooter>
         </table>
       )
-      const footer = screen.getByText('Test Footer Content')
+      const footer = screen.getByText('Test Footer Content').closest('tfoot') as HTMLElement
       expect(footer).toHaveClass('bg-surface-secondary', 'font-medium')
     })
 
     it('applies custom class names', () => {
       render(
         <table>
-          <TableFooter className="custom-footer">Test Footer Content</TableFooter>
+          <TableFooter className="custom-footer">
+            <tr>
+              <td>Test Footer Content</td>
+            </tr>
+          </TableFooter>
         </table>
       )
-      const footer = screen.getByText('Test Footer Content')
+      const footer = screen.getByText('Test Footer Content').closest('tfoot') as HTMLElement
       expect(footer).toHaveClass('custom-footer')
     })
   })
@@ -211,11 +235,13 @@ describe('Table components', () => {
       render(
         <table>
           <tbody>
-            <TableRow>Test Row Content</TableRow>
+            <TableRow>
+              <td>Test Row Content</td>
+            </TableRow>
           </tbody>
         </table>
       )
-      const row = screen.getByText('Test Row Content')
+      const row = screen.getByText('Test Row Content').closest('tr') as HTMLElement
       expect(row).toHaveClass(
         'border-b',
         'border-border-faint',
@@ -229,11 +255,13 @@ describe('Table components', () => {
       render(
         <table>
           <tbody>
-            <TableRow className="custom-row">Test Row Content</TableRow>
+            <TableRow className="custom-row">
+              <td>Test Row Content</td>
+            </TableRow>
           </tbody>
         </table>
       )
-      const row = screen.getByText('Test Row Content')
+      const row = screen.getByText('Test Row Content').closest('tr') as HTMLElement
       expect(row).toHaveClass('custom-row')
     })
 
@@ -242,7 +270,7 @@ describe('Table components', () => {
         <table>
           <tbody>
             <TableRow data-testid="test-row" data-state="selected">
-              Test Row Content
+              <td>Test Row Content</td>
             </TableRow>
           </tbody>
         </table>
@@ -382,9 +410,7 @@ describe('Table components', () => {
     it('renders children correctly', () => {
       render(
         <table>
-          <caption>
-            <TableCaption>Test Caption</TableCaption>
-          </caption>
+          <TableCaption>Test Caption</TableCaption>
         </table>
       )
       expect(screen.getByText('Test Caption')).toBeInTheDocument()
@@ -393,9 +419,7 @@ describe('Table components', () => {
     it('applies correct styling', () => {
       render(
         <table>
-          <caption>
-            <TableCaption>Test Caption Content</TableCaption>
-          </caption>
+          <TableCaption>Test Caption Content</TableCaption>
         </table>
       )
       const caption = screen.getByText('Test Caption Content')
@@ -405,9 +429,7 @@ describe('Table components', () => {
     it('applies custom class names', () => {
       render(
         <table>
-          <caption>
-            <TableCaption className="custom-caption">Test Caption Content</TableCaption>
-          </caption>
+          <TableCaption className="custom-caption">Test Caption Content</TableCaption>
         </table>
       )
       const caption = screen.getByText('Test Caption Content')

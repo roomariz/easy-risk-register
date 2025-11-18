@@ -111,6 +111,27 @@ All pull requests must:
 - Pass the build process
 - Include documentation updates if applicable
 
+## Secrets Management
+
+To ensure security and prevent sensitive information from being exposed:
+
+1. **Never hardcode secrets** in the source code, including:
+   - API keys
+   - Passwords
+   - Authentication tokens
+   - Database connection strings
+   - Any other sensitive information
+
+2. **Use environment variables** for configuration:
+   - Add new environment variables to `.env.example` with empty or placeholder values
+   - Follow the pattern `VITE_VARIABLE_NAME` for frontend environment variables
+   - Update your local `.env` file with actual values (not committed to git)
+   - Reference variables in code using `import.meta.env.VARIABLE_NAME`
+
+3. **Security scanning**: The project uses Gitleaks to scan for potential secrets in commits.
+   - Ensure your changes pass the secret scanning checks
+   - If adding new environment variables, make sure they are properly documented
+
 ## Pull Request Guidelines
 
 1. Describe the changes clearly in the pull request description

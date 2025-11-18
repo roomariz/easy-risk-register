@@ -1,0 +1,22 @@
+# Gitleaks Configuration
+# This file defines custom rules for gitleaks to detect potential secrets
+
+title = "Gitleaks Configuration"
+
+[extend]
+# useDefault will extend the base configuration with the default gitleaks config
+useDefault = true
+
+# Allowlist configurations
+[allowlist]
+paths = [
+    '''.git''',
+    '''.gitleaks.toml''',
+    '''.npm-cache''',
+]
+
+# Add custom rules if needed
+[[rules]]
+id = "custom-secret-pattern"
+description = "Custom secret pattern"
+regex = '''(?i)(secret|token|password|key|auth|api|credential)\s*[:=]\s*["']([^"']{10,})["']'''

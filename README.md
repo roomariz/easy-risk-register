@@ -204,11 +204,11 @@ We welcome contributions to the Easy Risk Register project. Please read our [con
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](docs/LICENSE) file for details.
 
 ## Security Policy
 
-We take security seriously. For information about our security measures, see our [security documentation](SECURITY.md).
+We take security seriously. For information about our security measures, see our [security documentation](docs/SECURITY.md).
 
 ### Automated Security Scanning
 

@@ -44,40 +44,6 @@ The CSV import functionality includes security measures:
 | ------- | ------------------ |
 | 1.x.x   | ✅ Yes (Current)   |
 
-## Reporting a Vulnerability
-
-We take security seriously and appreciate your efforts to responsibly disclose any security vulnerabilities found in Easy Risk Register.
-
-### How to Report a Security Issue
-
-If you discover a security vulnerability, please report it to us by:
-
-1. **Contact Method**: Send an email to [security@easy-risk-register.org](mailto:security@easy-risk-register.org)
-   *(Note: This is currently a placeholder. In a production environment, this would be a real, monitored security email address. For now, please open an issue in the GitHub repository or contact the maintainers directly through other available channels)*
-2. Providing a detailed description of the vulnerability
-3. Including steps to reproduce the issue
-4. Sharing proof-of-concept code if applicable
-
-### What to Expect
-
-- **Acknowledgment**: You will receive an acknowledgment within 48 hours
-- **Status Updates**: We will provide regular updates on the status of your report
-- **Resolution**: We aim to address critical vulnerabilities within 30 days
-- **Public Disclosure**: We will coordinate with you on public disclosure timing after resolution
-
-### Scope
-
-We welcome reports concerning:
-- Code injection vulnerabilities (XSS, SQL injection, etc.)
-- Authentication/authorization issues
-- Cryptographic implementation flaws
-- Data exposure concerns
-- Any other security-related issues
-
-### Bug Bounty
-
-While we do not currently offer monetary rewards, we are grateful for responsible disclosure of security vulnerabilities and will publicly acknowledge your contribution (if you wish) in our release notes after the issue is resolved.
-
 ## Security Best Practices for Users
 
 ### Data Protection
